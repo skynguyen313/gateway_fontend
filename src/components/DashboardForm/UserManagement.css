@@ -1,0 +1,33 @@
+/* UserManagement.css */
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .user-table th {
+    background-color:  #4caf50;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .user-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .user-table td {
+    word-wrap: break-word;
+  }
+  

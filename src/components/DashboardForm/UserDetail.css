@@ -1,0 +1,94 @@
+/* Container chính của phần chi tiết người dùng */
+.user-details {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Tiêu đề phần chi tiết người dùng */
+  .user-title {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* Phần hiển thị ảnh người dùng */
+  .user-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #34495e;
+  }
+  
+  /* Phần thông tin người dùng nằm bên trái */
+  .user-info {
+    text-align: left;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+  }
+  
+  .user-info p {
+    margin-bottom: 10px;
+  }
+  
+  .user-info strong {
+    color: #2c3e50;
+  }
+  
+  /* Đảm bảo giao diện phù hợp trên các màn hình nhỏ */
+  @media (max-width: 768px) {
+    .user-details {
+      padding: 15px;
+      width: 90%;
+    }
+  
+    .user-title {
+      font-size: 1.5em;
+    }
+  
+    .user-image {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .user-info p {
+      font-size: 1em;
+    }
+  }
+  
+  /* Nút Cập nhật */
+.btn-submit {
+    background-color: #007bff; /* Màu nền xanh */
+    color: white; /* Màu chữ trắng */
+    font-size: 1.1em;
+    padding: 12px 25px; /* Khoảng cách bên trong nút */
+    border: none;
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng chuyển màu và khi nhấn */
+    margin-top: 20px;
+  }
+  
+  /* Hiệu ứng khi di chuột vào nút */
+  .btn-submit:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+    transform: scale(1.05); /* Tăng kích thước nút */
+  }
+  
+  /* Hiệu ứng khi nút được nhấn */
+  .btn-submit:active {
+    background-color: #003d80; /* Màu nền khi nhấn */
+    transform: scale(0.98); /* Giảm kích thước khi nhấn */
+  }
