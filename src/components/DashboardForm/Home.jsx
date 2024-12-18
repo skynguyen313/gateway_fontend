@@ -4,6 +4,7 @@ import './Home.css';
 
 const Home = () => {
   const [uid, setUid] = useState('');
+  const [name, setName] = useState('');
   const [entryInfo, setEntryInfo] = useState(null);
   const [exitInfo, setExitInfo] = useState(null);
 
@@ -19,6 +20,7 @@ const Home = () => {
         console.log('Parsed data:', data);
 
         if (data.value) {
+          setName(data.name);
           setUid(data.value);
         }
       } catch (err) {
@@ -39,21 +41,19 @@ const Home = () => {
     };
   }, []);
 
-
   useEffect(() => {
-    if (uid) { // Kiểm tra nếu uid đã có giá trị
+    if (uid) {
       const fetchUserData = async () => {
         try {
           console.log("Fetching data for UID:", uid);
           const response = await AxiosInstance.get(`api/prove/person/${uid}/`);
-          console.log('Response data:', response.data); // Thêm log để kiểm tra phản hồi từ API
+          console.log('Response data:', response.data);
+
           if (response.status === 200) {
-            if (response.data.name === 'rfid1') {
+            if (name === 'rfid1') {
               setEntryInfo(response.data);
-              console.log('Entry Info Updated:', response.data);
-            } else if (response.data.name === 'rfid2') {
+            } else if (name === 'rfid2') {
               setExitInfo(response.data);
-              console.log('Exit Info Updated:', response.data);
             }
           }
         } catch (error) {
@@ -63,27 +63,32 @@ const Home = () => {
 
       fetchUserData();
     }
-  }, [uid]);
+  }, [uid, name]);
 
   const renderUserInfo = (userInfo) => {
     if (!userInfo) {
       return <p>Chưa nhận thông tin người dùng</p>;
     }
-    console.log('Rendering userInfo:', userInfo);
+
+    const imageUrl = userInfo.profile_image
+      ? `${process.env.REACT_APP_API_BASE_URL}${userInfo.profile_image}`
+      : null;
+
     return (
-      <div>
+      <div className="user-info">
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt={userInfo.name}
+            className="profile-image"
+          />
+        )}
         <p><strong>Tên:</strong> {userInfo.name}</p>
         <p><strong>Số CMND:</strong> {userInfo.id_number}</p>
         <p><strong>Biển số xe:</strong> {userInfo.license_plate}</p>
         <p><strong>Ngày tham gia:</strong> {userInfo.date_joined}</p>
         <p><strong>Kích hoạt:</strong> {userInfo.activate ? 'Có' : 'Không'}</p>
-        {userInfo.profile_image && (
-          <img
-            src={userInfo.profile_image}
-            alt="Profile"
-            className="profile-image"
-          />
-        )}
+        
       </div>
     );
   };
@@ -97,10 +102,6 @@ const Home = () => {
       <div className="right-panel">
         <h2>Thông tin cửa ra</h2>
         {renderUserInfo(exitInfo)}
-      </div>
-      <div className="uid-display">
-        <h3>UID nhận được:</h3>
-        <p>{uid || 'Chưa nhận UID'}</p>
       </div>
     </div>
   );

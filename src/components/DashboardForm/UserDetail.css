@@ -92,3 +92,16 @@
     background-color: #003d80; /* Màu nền khi nhấn */
     transform: scale(0.98); /* Giảm kích thước khi nhấn */
   }
+  .btn-delete {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  .btn-delete:hover {
+    background-color: #ff7875;
+  }
+  

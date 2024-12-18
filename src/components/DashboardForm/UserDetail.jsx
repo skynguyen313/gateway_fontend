@@ -80,6 +80,19 @@ const UserDetail = () => {
     }
   };
 
+  const handleDelete = async () => {
+    if (!window.confirm('Bạn có chắc chắn muốn xóa người dùng này không?')) return;
+
+    try {
+      await AxiosInstance.delete(`api/prove/person/${uid}/`);
+      toast.success('Xóa người dùng thành công!');
+      navigate('/users'); // Điều hướng về danh sách người dùng sau khi xóa
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      toast.error('Lỗi khi xóa người dùng');
+    }
+  };
+
   if (!user) return <p>Đang tải...</p>;
 
   return (
@@ -144,6 +157,7 @@ const UserDetail = () => {
         </div>
         <button type="submit" className="btn-submit">Cập nhật</button>
       </form>
+      <button onClick={handleDelete} className="btn-delete">Xóa người dùng</button>
     </div>
   );
 };

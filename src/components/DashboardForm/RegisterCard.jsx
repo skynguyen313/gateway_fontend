@@ -29,7 +29,7 @@ const RegisterCard = () => {
   };
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8080/');
+    const ws = new WebSocket('ws://localhost:8080');
     ws.onopen = () => {
       console.log('WebSocket connection established');
     };
