@@ -6,20 +6,24 @@ wss.on('connection', (ws) => {
   console.log('New client connected');
 
   ws.on('message', (message) => {
-    // Giả định message là UID thô (có thể là Buffer)
     console.log(`Received message from client: ${message}`);
 
     // Kiểm tra và chuyển đổi message nếu nó là Buffer
-    let uidMessage = message;
+    let jsonMessage;
     if (Buffer.isBuffer(message)) {
-      // Chuyển buffer thành chuỗi (giả định message là UID)
-      uidMessage = message.toString(); 
+      message = message.toString(); // Chuyển buffer thành chuỗi
     }
-
-    // Gửi UID đến tất cả client đang kết nối
+    try {
+      // Cố gắng parse message thành JSON
+      jsonMessage = JSON.parse(message);
+    } catch (err) {
+      console.error('Invalid JSON format received:', err);
+      return; // Dừng xử lý nếu không phải JSON hợp lệ
+    }
+    // Gửi JSON đến tất cả client đang kết nối
     wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ uid: uidMessage }));
+        client.send(JSON.stringify(jsonMessage));
       }
     });
   });

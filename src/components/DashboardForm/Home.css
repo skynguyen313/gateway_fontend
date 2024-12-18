@@ -1,0 +1,36 @@
+.home-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .left-panel, .right-panel {
+    width: 48%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .left-panel {
+    background-color: #f0f4f8;
+  }
+  
+  .right-panel {
+    background-color: #e6f7ff;
+  }
+  
+  .uid-display {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 2px solid #ccc;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+  }
+  

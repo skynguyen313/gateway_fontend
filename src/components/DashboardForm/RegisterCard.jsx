@@ -34,24 +34,25 @@ const RegisterCard = () => {
       console.log('WebSocket connection established');
     };
     ws.onmessage = (event) => {
-
       try {
+        console.log('Raw data received:', event.data); // In ra dữ liệu thô nhận được từ server
         const data = JSON.parse(event.data); // Parse JSON từ server
         console.log('Parsed data:', data); // Log dữ liệu sau khi parse
     
-        if (data.uid) {
+        if (data.value) {
           setFormData((prevData) => ({
             ...prevData,
-            uid: data.uid,
+            uid: data.value,
           }));
-          toast.info(`UID mới nhận: ${data.uid}`);
+          toast.info(`UID mới nhận: ${data.value}`);
         }
-
       } catch (err) {
         console.error('Error parsing WebSocket message:', err);
+        console.error('Raw data:', event.data); // In ra dữ liệu thô để kiểm tra
         toast.error('Dữ liệu nhận được không hợp lệ');
       }
     };
+    
     
     ws.onerror = (error) => {
       console.error('WebSocket Error:', error);
